@@ -19,18 +19,18 @@ export function AboutSection() {
             initial={{ opacity: 0, x: -50 }}
             animate={isInView ? { opacity: 1, x: 0 } : {}}
             transition={{ duration: 0.8 }}>
-            <h2 className='text-4xl md:text-5xl font-bold text-[rgb(var(--navy))] mb-6'>
+            <h2 className='text-4xl md:text-5xl font-bold text-navy mb-6'>
               About us
             </h2>
-            <h3 className='text-2xl md:text-3xl font-semibold text-[rgb(var(--foreground))] mb-4'>
+            <h3 className='text-2xl md:text-3xl font-semibold text-foreground mb-4'>
               Providing Logistics Support since 2020
             </h3>
-            <p className='text-lg text-[rgb(var(--muted-foreground))] mb-6 leading-relaxed'>
+            <p className='text-lg text-muted-foreground mb-6 leading-relaxed'>
               Logistics is the process of planning, organizing, and managing the
               movement and storage of goods, resources, and information from one
               point to another.
             </p>
-            <button className='flex items-center gap-2 text-[rgb(var(--primary-blue))] hover:text-[rgb(var(--navy))] transition-colors group'>
+            <button className='flex items-center gap-2 text-primary-blue hover:text-navy transition-colors group'>
               <img
                 src='https://api.dicebear.com/7.x/avataaars/svg?seed=Felix'
                 alt='Team member'

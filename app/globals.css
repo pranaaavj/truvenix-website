@@ -82,8 +82,8 @@
 }
 
 @theme inline {
-  --font-sans: 'Inter', 'system-ui', sans-serif;
-  --font-display: 'Space Grotesk', 'system-ui', sans-serif;
+  /* Updated font to Montserrat for minimal look */
+  --font-sans: 'Montserrat', 'system-ui', sans-serif;
 
   /* Fixed color mappings to use rgb() format for Tailwind v4 */
   --color-background: rgb(var(--background));
@@ -161,6 +161,12 @@
 
 @layer base {
   * {
+    cursor: none !important;
+  }
+}
+
+@layer base {
+  * {
     @apply border-border outline-ring/50;
   }
   body {
@@ -193,4 +199,14 @@ html.lenis body {
 
 .lenis.lenis-smooth iframe {
   pointer-events: none;
+}
+
+@layer utilities {
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
 }

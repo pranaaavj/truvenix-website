@@ -59,11 +59,11 @@ export function ContactSection() {
             initial={{ opacity: 0, x: 50 }}
             animate={isInView ? { opacity: 1, x: 0 } : {}}
             transition={{ duration: 0.8, delay: 0.2 }}>
-            <div className='bg-[rgb(var(--surface))] rounded-2xl p-8 md:p-10'>
+            <div className='bg-surface rounded-2xl p-8 md:p-10'>
               <form className='space-y-6'>
                 <div className='grid grid-cols-2 gap-4'>
                   <div>
-                    <label className='block text-sm font-medium text-[rgb(var(--foreground))] mb-2'>
+                    <label className='block text-sm font-medium text-foreground mb-2'>
                       First Name
                     </label>
                     <Input
@@ -72,7 +72,7 @@ export function ContactSection() {
                     />
                   </div>
                   <div>
-                    <label className='block text-sm font-medium text-[rgb(var(--foreground))] mb-2'>
+                    <label className='block text-sm font-medium text-foreground mb-2'>
                       Second Name
                     </label>
                     <Input
@@ -83,7 +83,7 @@ export function ContactSection() {
                 </div>
 
                 <div>
-                  <label className='block text-sm font-medium text-[rgb(var(--foreground))] mb-2'>
+                  <label className='block text-sm font-medium text-foreground mb-2'>
                     Company Name
                   </label>
                   <Input
@@ -93,7 +93,7 @@ export function ContactSection() {
                 </div>
 
                 <div>
-                  <label className='block text-sm font-medium text-[rgb(var(--foreground))] mb-2'>
+                  <label className='block text-sm font-medium text-foreground mb-2'>
                     Email
                   </label>
                   <Input
@@ -104,7 +104,7 @@ export function ContactSection() {
                 </div>
 
                 <div>
-                  <label className='block text-sm font-medium text-[rgb(var(--foreground))] mb-2'>
+                  <label className='block text-sm font-medium text-foreground mb-2'>
                     Phone number
                   </label>
                   <Input
@@ -115,7 +115,7 @@ export function ContactSection() {
                 </div>
 
                 <div>
-                  <label className='block text-sm font-medium text-[rgb(var(--foreground))] mb-2'>
+                  <label className='block text-sm font-medium text-foreground mb-2'>
                     Message
                   </label>
                   <Textarea
@@ -134,13 +134,13 @@ export function ContactSection() {
                   />
                   <label
                     htmlFor='privacy'
-                    className='text-sm text-[rgb(var(--muted-foreground))]'>
+                    className='text-sm text-muted-foreground'>
                     I'd like to receive more information about products, I
                     understand and agree to the Privacy Policy.
                   </label>
                 </div>
 
-                <Button className='w-full bg-[rgb(var(--primary-blue))] hover:bg-[rgb(var(--navy))] text-white rounded-full h-12'>
+                <Button className='w-full bg-primary-blue hover:bg-navy text-white rounded-full h-12'>
                   Send Message
                 </Button>
               </form>

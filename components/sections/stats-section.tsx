@@ -18,7 +18,7 @@ export function StatsSection() {
   return (
     <section
       ref={ref}
-      className='py-20 md:py-32 bg-[rgb(var(--primary-blue))] text-white relative overflow-hidden'>
+      className='py-20 md:py-32 bg-primary-blue text-white relative overflow-hidden'>
       <div className='absolute inset-0 opacity-10'>
         <div className="absolute inset-0 bg-[url('/shipping-containers-hero.png')] bg-cover bg-center" />
       </div>

@@ -9,6 +9,7 @@ import { StatsSection } from '@/components/sections/stats-section';
 import { ContactSection } from '@/components/sections/contact-section';
 import { FooterSection } from '@/components/sections/footer-section';
 import { ScrollProgress } from '@/components/scroll-progress';
+import { WhatsAppChatbot } from '@/components/whatsapp-chatbot';
 
 export default function Home() {
   return (
@@ -24,6 +25,7 @@ export default function Home() {
         <StatsSection />
         <ContactSection />
         <FooterSection />
+        <WhatsAppChatbot />
       </main>
     </LenisProvider>
   );

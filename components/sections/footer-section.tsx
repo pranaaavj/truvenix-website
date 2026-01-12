@@ -18,7 +18,7 @@ const socialLinks = [
 
 export function FooterSection() {
   return (
-    <footer className='relative bg-[rgb(var(--primary-blue))] text-white px-6 py-16 overflow-hidden'>
+    <footer className='relative bg-primary-blue text-white px-6 py-16 overflow-hidden'>
       {/* Background Pattern */}
       <div className='absolute inset-0 opacity-5'>
         <div className="absolute inset-0 bg-[url('/shipping-containers-hero.png')] bg-cover bg-center" />
