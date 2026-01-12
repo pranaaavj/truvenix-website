@@ -3,6 +3,7 @@
 import { useRef } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { Button } from '@/components/ui/button';
+import { ColourfulText } from '@/components/colorful-text';
 
 export function HeroSection() {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -58,7 +59,7 @@ export function HeroSection() {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}>
-            Where trust meets transit
+            Where <ColourfulText text='trust' /> meets transit
           </motion.h1>
 
           <motion.p
