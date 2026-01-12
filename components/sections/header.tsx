@@ -102,7 +102,7 @@ export function Header() {
           {/* MotionHighlight integrated here */}
           <MotionHighlight
             hover
-            className='rounded-md bg-primary-blue/10'
+            className='rounded-full bg-black/20'
             transition={{ type: 'spring', stiffness: 350, damping: 30 }}>
             <nav className='hidden md:flex items-center gap-8'>
               {[
@@ -116,7 +116,7 @@ export function Header() {
                   asChild>
                   <motion.button
                     onClick={() => scrollToSection(item.id)}
-                    className='relative px-2 py-1 text-sm font-medium text-foreground/80 hover:text-primary-blue transition-colors group'
+                    className='relative px-2 py-1 text-sm font-medium text-foreground/80 transition-colors group'
                     initial={{ opacity: 0, y: -20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{
@@ -130,12 +130,12 @@ export function Header() {
                     {item.label}
 
                     {/* Existing underline animation preserved */}
-                    <motion.span
+                    {/* <motion.span
                       className='absolute -bottom-1 left-0 right-0 h-0.5 bg-gradient-to-r from-primary-blue to-accent-cyan rounded-full'
                       initial={{ scaleX: 0 }}
                       whileHover={{ scaleX: 1 }}
                       transition={{ duration: 0.3 }}
-                    />
+                    /> */}
                   </motion.button>
                 </MotionHighlightItem>
               ))}
