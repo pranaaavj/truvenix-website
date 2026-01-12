@@ -1,19 +1,15 @@
 import type React from 'react';
 import type { Metadata } from 'next';
-import { Inter, Space_Grotesk } from 'next/font/google';
+import { Montserrat } from 'next/font/google';
 import { Analytics } from '@vercel/analytics/next';
 import './globals.css';
 
-const _inter = Inter({ subsets: ['latin'] });
-const _spaceGrotesk = Space_Grotesk({
-  subsets: ['latin'],
-  weight: ['400', '500', '600', '700'],
-});
+const _montserrat = Montserrat({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
-  title: 'Truvenix – Where Trust Meets Transit',
+  title: 'Freight Forwarding Co. | AI-Powered Shipping Solutions',
   description:
-    'Reliable shipping and logistics solutions for your business. International shipping, supply chain management, and freight forwarding services.',
+    'Modern freight forwarding services with AI-powered customer support',
   generator: 'v0.app',
   icons: {
     icon: [
@@ -40,7 +36,9 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang='en'>
+    <html
+      lang='en'
+      className='cursor-none md:cursor-none'>
       <body className={`font-sans antialiased`}>
         {children}
         <Analytics />

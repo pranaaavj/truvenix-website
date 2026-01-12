@@ -96,10 +96,10 @@ export function ServicesSection() {
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.8 }}
           className='mb-16 text-center'>
-          <h2 className='text-4xl md:text-5xl font-bold text-[rgb(var(--navy))] mb-4'>
+          <h2 className='text-4xl md:text-5xl font-bold text-navy mb-4'>
             Our Services
           </h2>
-          <p className='text-lg text-[rgb(var(--muted-foreground))] max-w-2xl mx-auto'>
+          <p className='text-lg text-muted-foreground max-w-2xl mx-auto'>
             Comprehensive logistics solutions tailored to your business needs
           </p>
         </motion.div>
@@ -129,20 +129,20 @@ export function ServicesSection() {
                     }}
                     transition={{ duration: 0.6 }}
                   />
-                  <div className='absolute inset-0 bg-gradient-to-t from-[rgb(var(--navy))] via-[rgb(var(--navy))]/60 to-transparent' />
+                  <div className='absolute inset-0 bg-gradient-to-t from-navy via-navy/60 to-transparent' />
                 </div>
 
                 {/* Card Content */}
                 <div className='p-6'>
                   <div className='flex items-center gap-3 mb-3'>
-                    <div className='w-10 h-10 rounded-full bg-[rgb(var(--primary-blue))]/10 flex items-center justify-center'>
-                      <Icon className='w-5 h-5 text-[rgb(var(--primary-blue))]' />
+                    <div className='w-10 h-10 rounded-full bg-primary-blue/10 flex items-center justify-center'>
+                      <Icon className='w-5 h-5 text-primary-blue' />
                     </div>
-                    <h3 className='text-xl font-semibold text-[rgb(var(--navy))]'>
+                    <h3 className='text-xl font-semibold text-navy'>
                       {service.title}
                     </h3>
                   </div>
-                  <p className='text-sm text-[rgb(var(--muted-foreground))] leading-relaxed mb-4'>
+                  <p className='text-sm text-muted-foreground leading-relaxed mb-4'>
                     {service.shortDescription}
                   </p>
 
@@ -166,12 +166,12 @@ export function ServicesSection() {
                           }}
                           transition={{ duration: 0.3, delay: idx * 0.1 }}
                           className='flex items-start gap-2'>
-                          <div className='w-1.5 h-1.5 rounded-full bg-[rgb(var(--primary-blue))] mt-2 flex-shrink-0' />
+                          <div className='w-1.5 h-1.5 rounded-full bg-primary-blue mt-2 flex-shrink-0' />
                           <div>
-                            <p className='text-sm font-medium text-[rgb(var(--navy))]'>
+                            <p className='text-sm font-medium text-navy'>
                               {detail.name}
                             </p>
-                            <p className='text-xs text-[rgb(var(--muted-foreground))]'>
+                            <p className='text-xs text-muted-foreground'>
                               {detail.desc}
                             </p>
                           </div>
@@ -183,7 +183,7 @@ export function ServicesSection() {
 
                 {/* Hover indicator */}
                 <motion.div
-                  className='absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-[rgb(var(--primary-blue))] to-[rgb(var(--navy))]'
+                  className='absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-primary-blue to-navy'
                   initial={{ scaleX: 0 }}
                   animate={{ scaleX: isHovered ? 1 : 0 }}
                   transition={{ duration: 0.3 }}
