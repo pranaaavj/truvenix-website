@@ -23,23 +23,23 @@ export function Header() {
   const maxWidth = useTransform(
     scrollY,
     [0, scrollThreshold],
-    ['1300px', '1000px']
+    ['1300px', '1000px'],
   );
   const height = useTransform(scrollY, [0, scrollThreshold], ['80px', '64px']);
   const borderRadius = useTransform(
     scrollY,
     [0, scrollThreshold],
-    ['0px', '999px']
+    ['0px', '999px'],
   );
   const backdropBlur = useTransform(
     scrollY,
     [0, scrollThreshold],
-    ['16px', '24px']
+    ['16px', '24px'],
   );
   const backgroundColor = useTransform(
     scrollY,
     [0, scrollThreshold],
-    ['rgba(255, 255, 255, 0.3)', 'rgba(255, 255, 255, 0.30)']
+    ['rgba(255, 255, 255, 0.3)', 'rgba(255, 255, 255, 0.30)'],
   );
   const shadowOpacity = useTransform(scrollY, [0, scrollThreshold], [0, 0.12]);
   const paddingY = useTransform(scrollY, [0, scrollThreshold], ['0px', '12px']);
@@ -75,12 +75,12 @@ export function Header() {
           borderRadius,
           backdropFilter: useTransform(
             backdropBlur,
-            (blur) => `blur(${blur}) saturate(200%) brightness(105%)`
+            (blur) => `blur(${blur}) saturate(200%) brightness(105%)`,
           ),
           backgroundColor,
           boxShadow: useTransform(
             shadowOpacity,
-            (opacity) => `0 8px 32px rgba(0, 0, 0, ${opacity})`
+            (opacity) => `0 8px 32px rgba(0, 0, 0, ${opacity})`,
           ),
         }}
         transition={springConfig}>
@@ -114,7 +114,8 @@ export function Header() {
                   key={item.id}
                   value={item.id}
                   asChild>
-                  <motion.button
+                  <motion.span
+                    role='button'
                     onClick={() => scrollToSection(item.id)}
                     className='relative px-2 py-1 text-sm font-medium text-foreground/80 transition-colors group'
                     initial={{ opacity: 0, y: -20 }}
@@ -125,7 +126,6 @@ export function Header() {
                       stiffness: 400,
                       damping: 17,
                     }}
-                    // whileHover={{ scale: 1.05, y: -2 }}
                     whileTap={{ scale: 0.95 }}>
                     {item.label}
 
@@ -136,7 +136,7 @@ export function Header() {
                       whileHover={{ scaleX: 1 }}
                       transition={{ duration: 0.3 }}
                     /> */}
-                  </motion.button>
+                  </motion.span>
                 </MotionHighlightItem>
               ))}
             </nav>

@@ -1,8 +1,7 @@
 'use client';
 
-import { useRef, useState } from 'react';
-import { motion, useInView } from 'framer-motion';
 import { Ship, FileCheck, TrendingUp, Users, Lightbulb } from 'lucide-react';
+import CardSwap, { Card } from '@/components/CardSwap';
 
 const services = [
   {
@@ -16,7 +15,6 @@ const services = [
       { name: 'Road Freight', desc: 'Domestic and international trucking' },
       { name: 'Rail Freight', desc: 'Cost-effective rail transport options' },
     ],
-    image: '/aerial-containers.png',
   },
   {
     title: 'Customs Clearance',
@@ -31,7 +29,6 @@ const services = [
       { name: 'Tariff Classification', desc: 'Accurate goods classification' },
       { name: 'Duty Management', desc: 'Calculate and manage customs duties' },
     ],
-    image: '/shipping-containers-hero.png',
   },
   {
     title: 'Logistics Solutions',
@@ -43,7 +40,6 @@ const services = [
       { name: 'Warehousing', desc: 'Storage with inventory management' },
       { name: 'Distribution', desc: 'Efficient last-mile delivery solutions' },
     ],
-    image: '/aerial-containers.png',
   },
   {
     title: 'Freight Brokering',
@@ -55,7 +51,6 @@ const services = [
       { name: 'Rate Negotiation', desc: 'Secure competitive freight rates' },
       { name: 'Shipment Tracking', desc: 'Real-time visibility for shipments' },
     ],
-    image: '/shipping-containers-hero.png',
   },
   {
     title: 'Consultation Services',
@@ -76,121 +71,103 @@ const services = [
         desc: 'Identify and mitigate logistics risks',
       },
     ],
-    image: '/aerial-containers.png',
   },
 ];
 
-export function ServicesSection() {
-  const ref = useRef<HTMLDivElement>(null);
-  const isInView = useInView(ref, { once: true, margin: '-100px' });
-  const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
-
+export function ServicesCard() {
   return (
     <section
       id='services'
-      ref={ref}
-      className='py-20 md:py-32 bg-gray-50'>
-      <div className='container mx-auto px-6'>
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.8 }}
-          className='mb-16 text-center'>
-          <h2 className='text-4xl md:text-5xl font-bold text-navy mb-4'>
+      className='py-24 bg-surface'>
+      <div className='container mx-auto px-6 max-w-7xl'>
+        {/* Header */}
+        <div className='mb-20'>
+          <p className='text-sm font-semibold tracking-widest text-accent uppercase mb-3'>
+            What We Offer
+          </p>
+          <h2 className='text-4xl md:text-5xl font-bold text-navy'>
             Our Services
           </h2>
-          <p className='text-lg text-muted-foreground max-w-2xl mx-auto'>
-            Comprehensive logistics solutions tailored to your business needs
-          </p>
-        </motion.div>
+        </div>
 
-        <div className='grid sm:grid-cols-2 lg:grid-cols-3 gap-6'>
-          {services.map((service, index) => {
-            const Icon = service.icon;
-            const isHovered = hoveredIndex === index;
-
-            return (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 30 }}
-                animate={isInView ? { opacity: 1, y: 0 } : {}}
-                transition={{ duration: 0.6, delay: index * 0.1 }}
-                onHoverStart={() => setHoveredIndex(index)}
-                onHoverEnd={() => setHoveredIndex(null)}
-                className='group relative rounded-2xl overflow-hidden bg-white shadow-md hover:shadow-2xl transition-all duration-500 cursor-pointer border border-gray-100'>
-                {/* Background Image */}
-                <div className='relative h-48 overflow-hidden'>
-                  <motion.img
-                    src={service.image || '/placeholder.svg'}
-                    alt={service.title}
-                    className='w-full h-full object-cover'
-                    animate={{
-                      scale: isHovered ? 1.1 : 1,
-                    }}
-                    transition={{ duration: 0.6 }}
+        {/* Two column layout */}
+        <div className='grid lg:grid-cols-2 gap-16 items-center'>
+          {/* Left - Text content */}
+          <div className='space-y-6'>
+            <h3 className='text-3xl md:text-4xl font-semibold text-navy leading-tight text-balance'>
+              Delivering trusted freight solutions worldwide
+            </h3>
+            <p className='text-muted-foreground text-lg leading-relaxed max-w-md'>
+              From customs clearance to last-mile delivery, we provide
+              comprehensive logistics services tailored to your business needs.
+            </p>
+            <div className='pt-4'>
+              <a
+                href='#'
+                className='inline-flex items-center gap-2 text-navy font-medium hover:text-accent transition-colors group'>
+                View all services
+                <svg
+                  className='w-4 h-4 group-hover:translate-x-1 transition-transform'
+                  fill='none'
+                  stroke='currentColor'
+                  viewBox='0 0 24 24'
+                  aria-hidden='true'>
+                  <path
+                    strokeLinecap='round'
+                    strokeLinejoin='round'
+                    strokeWidth={2}
+                    d='M17 8l4 4m0 0l-4 4m4-4H3'
                   />
-                  <div className='absolute inset-0 bg-gradient-to-t from-navy via-navy/60 to-transparent' />
-                </div>
+                </svg>
+              </a>
+            </div>
+          </div>
 
-                {/* Card Content */}
-                <div className='p-6'>
-                  <div className='flex items-center gap-3 mb-3'>
-                    <div className='w-10 h-10 rounded-full bg-primary-blue/10 flex items-center justify-center'>
-                      <Icon className='w-5 h-5 text-primary-blue' />
+          {/* Right - Card stack */}
+          <div className='relative h-[500px] lg:h-[550px]'>
+            <CardSwap
+              cardDistance={45}
+              verticalDistance={80}
+              delay={3500}
+              pauseOnHover={true}
+              width={480}
+              height={420}>
+              {services.map((service, index) => {
+                const Icon = service.icon;
+                return (
+                  <Card key={index}>
+                    <div className='flex items-center gap-3 mb-4'>
+                      <div className='p-2 rounded-lg bg-accent/10'>
+                        <Icon className='w-5 h-5 text-accent' />
+                      </div>
+                      <h3 className='text-xl font-semibold text-background'>
+                        {service.title}
+                      </h3>
                     </div>
-                    <h3 className='text-xl font-semibold text-navy'>
-                      {service.title}
-                    </h3>
-                  </div>
-                  <p className='text-sm text-muted-foreground leading-relaxed mb-4'>
-                    {service.shortDescription}
-                  </p>
-
-                  {/* Expandable Details */}
-                  <motion.div
-                    initial={{ height: 0, opacity: 0 }}
-                    animate={{
-                      height: isHovered ? 'auto' : 0,
-                      opacity: isHovered ? 1 : 0,
-                    }}
-                    transition={{ duration: 0.4, ease: 'easeInOut' }}
-                    className='overflow-hidden'>
-                    <div className='pt-4 border-t border-gray-100 space-y-3'>
+                    <p className='text-background/60 text-sm mb-5 leading-relaxed'>
+                      {service.shortDescription}
+                    </p>
+                    <ul className='space-y-2.5'>
                       {service.details.map((detail, idx) => (
-                        <motion.div
+                        <li
                           key={idx}
-                          initial={{ x: -10, opacity: 0 }}
-                          animate={{
-                            x: isHovered ? 0 : -10,
-                            opacity: isHovered ? 1 : 0,
-                          }}
-                          transition={{ duration: 0.3, delay: idx * 0.1 }}
-                          className='flex items-start gap-2'>
-                          <div className='w-1.5 h-1.5 rounded-full bg-primary-blue mt-2 flex-shrink-0' />
-                          <div>
-                            <p className='text-sm font-medium text-navy'>
+                          className='flex items-start gap-2 text-sm'>
+                          <span className='w-1 h-1 rounded-full bg-accent mt-2 flex-shrink-0' />
+                          <span className='text-background/50'>
+                            <span className='font-medium text-background/80'>
                               {detail.name}
-                            </p>
-                            <p className='text-xs text-muted-foreground'>
-                              {detail.desc}
-                            </p>
-                          </div>
-                        </motion.div>
+                            </span>
+                            {' \u2014 '}
+                            {detail.desc}
+                          </span>
+                        </li>
                       ))}
-                    </div>
-                  </motion.div>
-                </div>
-
-                {/* Hover indicator */}
-                <motion.div
-                  className='absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-primary-blue to-navy'
-                  initial={{ scaleX: 0 }}
-                  animate={{ scaleX: isHovered ? 1 : 0 }}
-                  transition={{ duration: 0.3 }}
-                />
-              </motion.div>
-            );
-          })}
+                    </ul>
+                  </Card>
+                );
+              })}
+            </CardSwap>
+          </div>
         </div>
       </div>
     </section>

@@ -4,7 +4,7 @@ import { Header } from '@/components/sections/header';
 import { HeroSection } from '@/components/sections/hero-section';
 import { AboutSection } from '@/components/sections/about-section';
 import { ApproachSection } from '@/components/sections/approach-section';
-import { ServicesSection } from '@/components/sections/services-section';
+import { ServicesCard } from '@/components/sections/services-section';
 import { StatsSection } from '@/components/sections/stats-section';
 import { ContactSection } from '@/components/sections/contact-section';
 import { FooterSection } from '@/components/sections/footer-section';
@@ -21,7 +21,7 @@ export default function Home() {
         <HeroSection />
         <AboutSection />
         <ApproachSection />
-        <ServicesSection />
+        <ServicesCard />
         <StatsSection />
         <ContactSection />
         <FooterSection />
