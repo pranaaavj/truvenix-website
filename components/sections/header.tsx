@@ -1,17 +1,38 @@
 'use client';
 
-import { useRef } from 'react';
-import { motion, useScroll, useTransform } from 'framer-motion';
+import Link from 'next/link';
+import { usePathname } from 'next/navigation';
+import {
+  motion,
+  useScroll,
+  useTransform,
+  useMotionValueEvent,
+} from 'framer-motion';
+import { useState, type MouseEvent } from 'react';
 import {
   MotionHighlight,
   MotionHighlightItem,
 } from '@/components/react-motion';
+import { useLenis } from '@/components/lenis-provider';
+
+const NAV_ITEMS = [
+  { label: 'Home', href: '/' },
+  { label: 'Shippers', href: '/shippers' },
+  { label: 'Carriers', href: '/carriers' },
+  { label: 'Contact', href: '#footer' },
+];
 
 export function Header() {
-  const headerRef = useRef<HTMLDivElement>(null);
+  const pathname = usePathname();
+  const lenis = useLenis();
   const { scrollY } = useScroll();
+  const [isScrolled, setIsScrolled] = useState(false);
 
   const scrollThreshold = 150;
+
+  useMotionValueEvent(scrollY, 'change', (latest) => {
+    setIsScrolled(latest > scrollThreshold * 0.6);
+  });
 
   const springConfig = {
     type: 'spring' as const,
@@ -34,33 +55,33 @@ export function Header() {
   const backdropBlur = useTransform(
     scrollY,
     [0, scrollThreshold],
-    ['16px', '24px']
+    ['0px', '24px']
   );
   const backgroundColor = useTransform(
     scrollY,
     [0, scrollThreshold],
-    ['rgba(255, 255, 255, 0.3)', 'rgba(255, 255, 255, 0.30)']
+    ['rgba(255, 255, 255, 0)', 'rgba(255, 255, 255, 0.85)']
   );
   const shadowOpacity = useTransform(scrollY, [0, scrollThreshold], [0, 0.12]);
   const paddingY = useTransform(scrollY, [0, scrollThreshold], ['0px', '12px']);
 
-  const scrollToSection = (sectionId: string) => {
-    const element = document.getElementById(sectionId);
-    if (!element) return;
+  const handleNavClick = (e: MouseEvent, href: string) => {
+    if (href.startsWith('#')) {
+      e.preventDefault();
+      lenis?.scrollTo(href, { duration: 1.2 });
+      return;
+    }
 
-    const offset = 80;
-    const elementPosition =
-      element.getBoundingClientRect().top + window.pageYOffset;
+    const [path, hash] = href.split('#');
 
-    window.scrollTo({
-      top: elementPosition - offset,
-      behavior: 'smooth',
-    });
+    if (path === pathname) {
+      e.preventDefault();
+      lenis?.scrollTo(hash ? `#${hash}` : 0, { duration: 1.2 });
+    }
   };
 
   return (
     <motion.div
-      ref={headerRef}
       className='fixed top-0 left-0 right-0 z-50 flex justify-center'
       style={{ paddingTop: paddingY }}
       initial={{ opacity: 0, y: -20 }}
@@ -75,72 +96,83 @@ export function Header() {
           borderRadius,
           backdropFilter: useTransform(
             backdropBlur,
-            (blur) => `blur(${blur}) saturate(200%) brightness(105%)`
+            (blur) => `blur(${blur}) saturate(180%)`
           ),
           backgroundColor,
           boxShadow: useTransform(
             shadowOpacity,
-            (opacity) => `0 8px 32px rgba(0, 0, 0, ${opacity})`
+            (opacity) => `0 8px 32px rgba(15, 23, 42, ${opacity})`
           ),
         }}
         transition={springConfig}>
-        {/* Decorative layers remain untouched */}
-
         <div className='h-full px-8 flex items-center justify-between relative z-10'>
-          {/* Logo unchanged */}
-          <motion.button
-            onClick={() => scrollToSection('hero')}
+          <Link
+            href='/'
+            onClick={(e) => handleNavClick(e, '/')}
             className='relative z-10 group'
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-            transition={{ type: 'spring', stiffness: 400, damping: 17 }}>
-            <span className='text-2xl font-bold text-navy tracking-tight'>
-              Truvenix
+            data-clickable>
+            <span
+              className={`text-xl font-bold tracking-tight transition-colors duration-300 ${
+                isScrolled ? 'text-navy' : 'text-white'
+              }`}>
+              TRUVENIX
+              <span className='text-accent-blue'>.</span>
             </span>
-          </motion.button>
+          </Link>
 
-          {/* MotionHighlight integrated here */}
           <MotionHighlight
             hover
-            className='rounded-full bg-black/20'
+            className={`rounded-full transition-colors duration-300 ${
+              isScrolled ? 'bg-navy/5' : 'bg-white/10'
+            }`}
             transition={{ type: 'spring', stiffness: 350, damping: 30 }}>
             <nav className='hidden md:flex items-center gap-8'>
-              {[
-                { label: 'About us', id: 'about' },
-                { label: 'Our Services', id: 'services' },
-                { label: 'Contact us', id: 'contact' },
-              ].map((item, index) => (
-                <MotionHighlightItem
-                  key={item.id}
-                  value={item.id}
-                  asChild>
-                  <motion.button
-                    onClick={() => scrollToSection(item.id)}
-                    className='relative px-2 py-1 text-sm font-medium text-foreground/80 transition-colors group'
-                    initial={{ opacity: 0, y: -20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{
-                      delay: 0.1 * index,
-                      type: 'spring',
-                      stiffness: 400,
-                      damping: 17,
-                    }}
-                    // whileHover={{ scale: 1.05, y: -2 }}
-                    whileTap={{ scale: 0.95 }}>
-                    {item.label}
-
-                    {/* Existing underline animation preserved */}
-                    {/* <motion.span
-                      className='absolute -bottom-1 left-0 right-0 h-0.5 bg-gradient-to-r from-primary-blue to-accent-cyan rounded-full'
-                      initial={{ scaleX: 0 }}
-                      whileHover={{ scaleX: 1 }}
-                      transition={{ duration: 0.3 }}
-                    /> */}
-                  </motion.button>
-                </MotionHighlightItem>
-              ))}
+              {NAV_ITEMS.map((item, index) => {
+                const isActive = pathname === item.href;
+                return (
+                  <MotionHighlightItem
+                    key={item.href}
+                    value={item.href}>
+                    <Link
+                      href={item.href}
+                      onClick={(e) => handleNavClick(e, item.href)}
+                      data-clickable
+                      className='relative px-2 py-1'>
+                      <motion.span
+                        className={`inline-block text-sm font-medium transition-colors duration-300 ${
+                          isScrolled
+                            ? isActive
+                              ? 'text-navy'
+                              : 'text-foreground/70'
+                            : isActive
+                              ? 'text-white'
+                              : 'text-white/70'
+                        }`}
+                        initial={{ opacity: 0, y: -12 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{
+                          delay: 0.08 * index,
+                          type: 'spring',
+                          stiffness: 400,
+                          damping: 17,
+                        }}
+                        whileTap={{ scale: 0.95 }}>
+                        {item.label}
+                      </motion.span>
+                    </Link>
+                  </MotionHighlightItem>
+                );
+              })}
             </nav>
           </MotionHighlight>
+
+          <Link
+            href='/shippers#quote'
+            onClick={(e) => handleNavClick(e, '/shippers#quote')}
+            data-clickable
+            className='hidden md:inline-flex items-center rounded-full bg-navy px-5 py-2 text-sm font-medium text-white transition-colors hover:bg-primary-blue'>
+            Request Rates
+          </Link>
         </div>
       </motion.header>
     </motion.div>

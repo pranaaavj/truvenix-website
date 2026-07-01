@@ -1,123 +1,121 @@
 'use client';
 
+import Link from 'next/link';
 import { motion } from 'framer-motion';
 import { Mail, Phone, MapPin } from 'lucide-react';
 
-const footerLinks = [
-  { label: 'About us', href: '#about' },
-  { label: 'Our Services', href: '#services' },
-  { label: 'Contact us', href: '#contact' },
-  { label: 'Get a quote', href: '#quote' },
-];
-
-const socialLinks = [
-  { label: 'LinkedIn', href: '#' },
-  { label: 'Twitter', href: '#' },
-  { label: 'Facebook', href: '#' },
+const quickLinks = [
+  { label: 'Home', href: '/' },
+  { label: 'Shippers', href: '/shippers' },
+  { label: 'Carriers', href: '/carriers' },
 ];
 
 export function FooterSection() {
   return (
-    <footer className='relative bg-primary-blue text-white px-6 py-16 overflow-hidden'>
-      {/* Background Pattern */}
-      <div className='absolute inset-0 opacity-5'>
-        <div className="absolute inset-0 bg-[url('/shipping-containers-hero.png')] bg-cover bg-center" />
-      </div>
-
-      <div className='relative container mx-auto'>
-        <div className='border-b border-white/20 pb-12 mb-12'>
-          <div className='grid grid-cols-1 md:grid-cols-3 gap-12'>
-            {/* Company Info */}
-            <div>
-              <motion.h2
-                className='text-3xl font-bold mb-4'
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}>
-                Truvenix
-              </motion.h2>
-              <p className='text-white/80 mb-6 leading-relaxed'>
-                Where trust meets transit. Providing reliable logistics
-                solutions since 2020.
-              </p>
-              <div className='space-y-3'>
-                <div className='flex items-center gap-3 text-white/80'>
-                  <Mail className='w-4 h-4' />
-                  <span className='text-sm'>truvenix@gmail.com</span>
-                </div>
-                <div className='flex items-center gap-3 text-white/80'>
-                  <Phone className='w-4 h-4' />
-                  <span className='text-sm'>+91 1234567890</span>
-                </div>
-                <div className='flex items-center gap-3 text-white/80'>
-                  <MapPin className='w-4 h-4' />
-                  <span className='text-sm'>Kochi, Kerala, India</span>
-                </div>
+    <footer
+      id='footer'
+      className='bg-navy text-white'>
+      <div className='container mx-auto px-6 py-16'>
+        <div className='grid grid-cols-1 md:grid-cols-3 gap-12 border-b border-white/10 pb-12 mb-8'>
+          <div>
+            <motion.h2
+              className='text-2xl font-bold mb-3'
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}>
+              TRUVENIX <span className='text-accent-blue'>LIMITED</span>
+            </motion.h2>
+            <p className='text-white/70 text-sm leading-relaxed mb-6 max-w-xs'>
+              An independent, non-asset logistics broker operating a
+              disclosed-agent model across the United Kingdom.
+            </p>
+            <div className='space-y-3 text-sm'>
+              <a
+                href='mailto:ops@truvenix.co.uk'
+                data-clickable
+                className='flex items-center gap-3 text-white/70 hover:text-white transition-colors'>
+                <Mail className='w-4 h-4 shrink-0' />
+                ops@truvenix.co.uk
+              </a>
+              <a
+                href='tel:+441234567890'
+                data-clickable
+                className='flex items-center gap-3 text-white/70 hover:text-white transition-colors'>
+                <Phone className='w-4 h-4 shrink-0' />
+                +44 (0) 123 456 7890
+              </a>
+              <div className='flex items-center gap-3 text-white/70'>
+                <MapPin className='w-4 h-4 shrink-0' />
+                United Kingdom
               </div>
             </div>
+          </div>
 
-            {/* Quick Links */}
-            <div>
-              <h3 className='text-lg font-semibold mb-4'>Quick Links</h3>
-              <nav className='flex flex-col gap-3'>
-                {footerLinks.map((link, i) => (
-                  <motion.a
-                    key={i}
-                    href={link.href}
-                    className='text-white/80 hover:text-white transition-colors text-sm'
-                    initial={{ opacity: 0, x: -20 }}
-                    whileInView={{ opacity: 1, x: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ delay: i * 0.05 }}
-                    data-clickable>
-                    {link.label}
-                  </motion.a>
-                ))}
-              </nav>
-            </div>
+          <div>
+            <h3 className='text-sm font-semibold uppercase tracking-wider text-white/50 mb-4'>
+              Navigate
+            </h3>
+            <nav className='flex flex-col gap-3'>
+              {quickLinks.map((link) => (
+                <Link
+                  key={link.href}
+                  href={link.href}
+                  data-clickable
+                  className='text-white/70 hover:text-white transition-colors text-sm w-fit'>
+                  {link.label}
+                </Link>
+              ))}
+            </nav>
+          </div>
 
-            {/* Connect */}
-            <div>
-              <h3 className='text-lg font-semibold mb-4'>
-                Let's connect with truvenix!
-              </h3>
-              <p className='text-white/80 text-sm mb-6'>
-                Follow us on social media for updates and news
-              </p>
-              <div className='flex flex-col gap-3'>
-                {socialLinks.map((link, i) => (
-                  <motion.a
-                    key={i}
-                    href={link.href}
-                    className='text-white/80 hover:text-white transition-colors text-sm'
-                    initial={{ opacity: 0, x: -20 }}
-                    whileInView={{ opacity: 1, x: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ delay: i * 0.05 }}
-                    data-clickable>
-                    {link.label}
-                  </motion.a>
-                ))}
-              </div>
+          <div>
+            <h3 className='text-sm font-semibold uppercase tracking-wider text-white/50 mb-4'>
+              Get Started
+            </h3>
+            <div className='flex flex-col gap-3'>
+              <Link
+                href='/shippers#quote'
+                data-clickable
+                className='text-white/70 hover:text-white transition-colors text-sm w-fit'>
+                Request Transport Rates
+              </Link>
+              <Link
+                href='/carriers#register'
+                data-clickable
+                className='text-white/70 hover:text-white transition-colors text-sm w-fit'>
+                Join Our Haulier Network
+              </Link>
             </div>
           </div>
         </div>
 
-        <div className='flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-white/70'>
-          <p>© 2025 Truvenix. All rights reserved.</p>
-          <div className='flex items-center gap-6'>
-            <a
-              href='#'
-              className='hover:text-white transition-colors'
-              data-clickable>
-              Privacy Policy
-            </a>
-            <a
-              href='#'
-              className='hover:text-white transition-colors'
-              data-clickable>
-              Terms of Service
-            </a>
+        <div className='space-y-4'>
+          <p className='text-xs text-white/50 leading-relaxed max-w-4xl'>
+            <span className='font-semibold text-white/70'>
+              Legal disclaimer:
+            </span>{' '}
+            Truvenix Limited acts exclusively as a disclosed agent
+            intermediary. All transport services arranged are subject
+            directly to the standard trading conditions of the performing
+            carrier (e.g. RHA conditions). Truvenix Limited does not
+            physically carry, handle, or store commercial cargo.
+          </p>
+          <div className='flex flex-col md:flex-row justify-between items-start md:items-center gap-4 text-xs text-white/50 pt-4 border-t border-white/10'>
+            <p>&copy; {new Date().getFullYear()} Truvenix Limited. All rights reserved.</p>
+            <div className='flex items-center gap-6'>
+              <a
+                href='#'
+                data-clickable
+                className='hover:text-white transition-colors'>
+                Privacy Policy
+              </a>
+              <a
+                href='#'
+                data-clickable
+                className='hover:text-white transition-colors'>
+                Terms of Trading
+              </a>
+            </div>
           </div>
         </div>
       </div>

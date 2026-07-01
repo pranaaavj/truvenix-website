@@ -1,32 +1,17 @@
-import { LenisProvider } from '@/components/lenis-provider';
-import { CustomCursor } from '@/components/custom-cursor';
-import { Header } from '@/components/sections/header';
-import { HeroSection } from '@/components/sections/hero-section';
-import { AboutSection } from '@/components/sections/about-section';
-import { ApproachSection } from '@/components/sections/approach-section';
-import { ServicesSection } from '@/components/sections/services-section';
-import { StatsSection } from '@/components/sections/stats-section';
-import { ContactSection } from '@/components/sections/contact-section';
-import { FooterSection } from '@/components/sections/footer-section';
-import { ScrollProgress } from '@/components/scroll-progress';
-import { WhatsAppChatbot } from '@/components/whatsapp-chatbot';
+import { HomeHero } from '@/components/sections/home-hero';
+import {
+  CorporateIntro,
+  DisclosedAgentFramework,
+  AudienceSplit,
+} from '@/components/sections/home-content';
 
 export default function Home() {
   return (
-    <LenisProvider>
-      <main className='custom-cursor bg-background'>
-        <CustomCursor />
-        <ScrollProgress />
-        <Header />
-        <HeroSection />
-        <AboutSection />
-        <ApproachSection />
-        <ServicesSection />
-        <StatsSection />
-        <ContactSection />
-        <FooterSection />
-        <WhatsAppChatbot />
-      </main>
-    </LenisProvider>
+    <>
+      <HomeHero />
+      <CorporateIntro />
+      <DisclosedAgentFramework />
+      <AudienceSplit />
+    </>
   );
 }

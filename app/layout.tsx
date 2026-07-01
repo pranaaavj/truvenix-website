@@ -2,15 +2,20 @@ import type React from 'react';
 import type { Metadata } from 'next';
 import { Montserrat } from 'next/font/google';
 import { Analytics } from '@vercel/analytics/next';
+import { LenisProvider } from '@/components/lenis-provider';
+import { CustomCursor } from '@/components/custom-cursor';
+import { ScrollProgress } from '@/components/scroll-progress';
+import { Header } from '@/components/sections/header';
+import { FooterSection } from '@/components/sections/footer-section';
+import { WhatsAppChatbot } from '@/components/whatsapp-chatbot';
 import './globals.css';
 
 const _montserrat = Montserrat({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
-  title: 'Freight Forwarding Co. | AI-Powered Shipping Solutions',
+  title: 'Truvenix Limited | UK Road Freight & Port Drayage Broker',
   description:
-    'Modern freight forwarding services with AI-powered customer support',
-  generator: 'v0.app',
+    'Truvenix Limited is an independent, non-asset logistics broker connecting UK shippers with vetted hauliers through a transparent, disclosed-agent model.',
   icons: {
     icon: [
       {
@@ -36,11 +41,16 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html
-      lang='en'
-      className='cursor-none md:cursor-none'>
+    <html lang='en'>
       <body className={`font-sans antialiased`}>
-        {children}
+        <LenisProvider>
+          <CustomCursor />
+          <ScrollProgress />
+          <Header />
+          <main className='bg-background'>{children}</main>
+          <FooterSection />
+          <WhatsAppChatbot />
+        </LenisProvider>
         <Analytics />
       </body>
     </html>
