@@ -1,7 +1,6 @@
 'use client';
 
 import Image from 'next/image';
-import { motion } from 'framer-motion';
 
 export function ShippersHero() {
   return (
@@ -15,24 +14,16 @@ export function ShippersHero() {
           sizes='100vw'
           className='object-cover'
         />
-        <div className='absolute inset-0 bg-gradient-to-t from-navy via-navy/70 to-navy/30' />
+        <div className='absolute inset-0 bg-gradient-to-t from-black/85 via-black/35 to-black/0' />
       </div>
 
       <div className='relative z-10 container mx-auto px-6 pt-40 pb-16'>
-        <motion.p
-          className='text-sm font-semibold tracking-[0.2em] text-accent-blue uppercase mb-5'
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}>
+        <p className='text-sm font-semibold tracking-[0.2em] text-accent-blue uppercase mb-5'>
           For Shippers
-        </motion.p>
-        <motion.h1
-          className='text-4xl md:text-5xl lg:text-6xl font-bold text-white max-w-3xl leading-[1.1] text-balance'
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.1 }}>
+        </p>
+        <h1 className='text-4xl md:text-5xl lg:text-6xl font-bold text-white max-w-3xl leading-[1.1] text-balance'>
           Seamless UK transport logistics without hidden overhead.
-        </motion.h1>
+        </h1>
       </div>
     </section>
   );

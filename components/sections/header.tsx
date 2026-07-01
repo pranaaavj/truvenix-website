@@ -65,10 +65,12 @@ export function Header() {
   const shadowOpacity = useTransform(scrollY, [0, scrollThreshold], [0, 0.12]);
   const paddingY = useTransform(scrollY, [0, scrollThreshold], ['0px', '12px']);
 
+  const HEADER_CLEARANCE = 96;
+
   const handleNavClick = (e: MouseEvent, href: string) => {
     if (href.startsWith('#')) {
       e.preventDefault();
-      lenis?.scrollTo(href, { duration: 1.2 });
+      lenis?.scrollTo(href, { duration: 1.2, offset: -HEADER_CLEARANCE });
       return;
     }
 
@@ -76,7 +78,10 @@ export function Header() {
 
     if (path === pathname) {
       e.preventDefault();
-      lenis?.scrollTo(hash ? `#${hash}` : 0, { duration: 1.2 });
+      lenis?.scrollTo(hash ? `#${hash}` : 0, {
+        duration: 1.2,
+        offset: hash ? -HEADER_CLEARANCE : 0,
+      });
     }
   };
 

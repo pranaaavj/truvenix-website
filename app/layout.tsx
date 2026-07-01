@@ -5,6 +5,7 @@ import { Analytics } from '@vercel/analytics/next';
 import { LenisProvider } from '@/components/lenis-provider';
 import { CustomCursor } from '@/components/custom-cursor';
 import { ScrollProgress } from '@/components/scroll-progress';
+import { PageTransition } from '@/components/page-transition';
 import { Header } from '@/components/sections/header';
 import { FooterSection } from '@/components/sections/footer-section';
 import { WhatsAppChatbot } from '@/components/whatsapp-chatbot';
@@ -47,7 +48,9 @@ export default function RootLayout({
           <CustomCursor />
           <ScrollProgress />
           <Header />
-          <main className='bg-background'>{children}</main>
+          <main className='bg-navy'>
+            <PageTransition>{children}</PageTransition>
+          </main>
           <FooterSection />
           <WhatsAppChatbot />
         </LenisProvider>

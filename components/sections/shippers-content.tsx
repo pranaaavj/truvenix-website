@@ -42,8 +42,8 @@ export function ShippersValueProp() {
           ref={ref}
           className='grid md:grid-cols-2 gap-12 items-center'>
           <motion.div
-            initial={{ opacity: 0, x: -40 }}
-            animate={isInView ? { opacity: 1, x: 0 } : {}}
+            initial={{ opacity: 0, y: 30 }}
+            animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.7 }}
             className='relative h-[320px] md:h-[420px] rounded-2xl overflow-hidden'>
             <Image
@@ -56,8 +56,8 @@ export function ShippersValueProp() {
           </motion.div>
 
           <motion.div
-            initial={{ opacity: 0, x: 40 }}
-            animate={isInView ? { opacity: 1, x: 0 } : {}}
+            initial={{ opacity: 0, y: 30 }}
+            animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.7, delay: 0.1 }}>
             <p className='text-sm font-semibold tracking-widest text-primary-blue uppercase mb-4'>
               The Truvenix Difference
@@ -100,25 +100,25 @@ export function ShippersServiceRange() {
           </h2>
         </motion.div>
 
-        <div className='grid md:grid-cols-3 gap-8'>
+        <div className='divide-y divide-border border-t border-border'>
           {SERVICES.map((service, index) => {
             const Icon = service.icon;
             return (
               <motion.div
                 key={service.title}
-                initial={{ opacity: 0, y: 30 }}
+                initial={{ opacity: 0, y: 20 }}
                 animate={isInView ? { opacity: 1, y: 0 } : {}}
-                transition={{ duration: 0.6, delay: index * 0.12 }}
-                className='rounded-2xl bg-background border border-border p-8'>
-                <div className='flex items-center justify-center w-12 h-12 rounded-full bg-primary-blue/10 mb-6'>
-                  <Icon className='w-6 h-6 text-primary-blue' />
+                transition={{ duration: 0.6, delay: index * 0.1 }}
+                className='grid md:grid-cols-[auto_1fr] gap-4 md:gap-10 py-8 items-start'>
+                <Icon className='w-6 h-6 text-primary-blue shrink-0' />
+                <div>
+                  <h3 className='text-lg font-semibold text-navy mb-2'>
+                    {service.title}
+                  </h3>
+                  <p className='text-sm text-muted-foreground leading-relaxed max-w-xl'>
+                    {service.description}
+                  </p>
                 </div>
-                <h3 className='text-lg font-semibold text-navy mb-3'>
-                  {service.title}
-                </h3>
-                <p className='text-sm text-muted-foreground leading-relaxed'>
-                  {service.description}
-                </p>
               </motion.div>
             );
           })}

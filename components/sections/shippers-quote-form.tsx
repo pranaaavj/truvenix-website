@@ -39,7 +39,7 @@ export function ShippersQuoteForm() {
   return (
     <section
       id='quote'
-      className='py-20 md:py-28 bg-background scroll-mt-24'>
+      className='py-24 md:py-32 bg-background scroll-mt-24'>
       <div className='container mx-auto px-6'>
         <div
           ref={ref}
@@ -63,8 +63,8 @@ export function ShippersQuoteForm() {
             animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.7, delay: 0.1 }}
             onSubmit={handleSubmit}
-            className='bg-surface rounded-2xl p-8 md:p-10 space-y-6'>
-            <div className='grid sm:grid-cols-2 gap-4'>
+            className='bg-surface rounded-2xl p-10 md:p-14 space-y-8'>
+            <div className='grid sm:grid-cols-2 gap-6'>
               <div>
                 <label className='block text-sm font-medium text-foreground mb-2'>
                   Company Name
@@ -89,7 +89,7 @@ export function ShippersQuoteForm() {
               </div>
             </div>
 
-            <div className='grid sm:grid-cols-2 gap-4'>
+            <div className='grid sm:grid-cols-2 gap-6'>
               <div>
                 <label className='block text-sm font-medium text-foreground mb-2'>
                   Origin Postcode

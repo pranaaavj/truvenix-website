@@ -10,7 +10,6 @@ import {
   CheckCircle2,
   Package,
   Truck,
-  ArrowRight,
 } from 'lucide-react';
 
 const STEPS = [
@@ -100,36 +99,42 @@ export function DisclosedAgentFramework() {
           </h2>
         </motion.div>
 
-        <div className='grid sm:grid-cols-2 lg:grid-cols-4 gap-8'>
-          {STEPS.map((step, index) => {
-            const Icon = step.icon;
-            return (
-              <motion.div
-                key={step.number}
-                initial={{ opacity: 0, y: 30 }}
-                animate={isInView ? { opacity: 1, y: 0 } : {}}
-                transition={{ duration: 0.6, delay: index * 0.12 }}
-                className='relative'>
-                <div className='flex items-center gap-3 mb-4'>
-                  <div className='flex items-center justify-center w-11 h-11 rounded-full bg-navy/5'>
-                    <Icon className='w-5 h-5 text-primary-blue' />
-                  </div>
+        <div className='relative'>
+          <div className='hidden lg:block absolute top-1.75 left-0 right-0 h-px bg-border overflow-hidden'>
+            <motion.div
+              className='h-full bg-primary-blue origin-left'
+              initial={{ scaleX: 0 }}
+              animate={isInView ? { scaleX: 1 } : {}}
+              transition={{ duration: 1.4, ease: 'easeInOut', delay: 0.2 }}
+            />
+          </div>
+
+          <div className='grid sm:grid-cols-2 lg:grid-cols-4 gap-10 lg:gap-8'>
+            {STEPS.map((step, index) => {
+              const Icon = step.icon;
+              return (
+                <motion.div
+                  key={step.number}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={isInView ? { opacity: 1, y: 0 } : {}}
+                  transition={{ duration: 0.6, delay: 0.3 + index * 0.15 }}>
+                  <span className='relative z-10 block w-3.5 h-3.5 rounded-full bg-primary-blue ring-4 ring-surface mb-5' />
                   <span className='text-xs font-semibold tracking-widest text-muted-foreground'>
                     STEP {step.number}
                   </span>
-                </div>
-                <h3 className='text-lg font-semibold text-navy mb-2'>
-                  {step.title}
-                </h3>
-                <p className='text-sm text-muted-foreground leading-relaxed'>
-                  {step.description}
-                </p>
-                {index < STEPS.length - 1 && (
-                  <ArrowRight className='hidden lg:block absolute top-4 -right-6 w-4 h-4 text-muted-foreground/40' />
-                )}
-              </motion.div>
-            );
-          })}
+                  <div className='flex items-center gap-2 mt-2 mb-2'>
+                    <Icon className='w-4 h-4 text-primary-blue shrink-0' />
+                    <h3 className='text-lg font-semibold text-navy'>
+                      {step.title}
+                    </h3>
+                  </div>
+                  <p className='text-sm text-muted-foreground leading-relaxed'>
+                    {step.description}
+                  </p>
+                </motion.div>
+              );
+            })}
+          </div>
         </div>
       </div>
     </section>

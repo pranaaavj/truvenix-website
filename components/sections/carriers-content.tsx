@@ -86,25 +86,25 @@ export function CarriersCompliance() {
           </p>
         </motion.div>
 
-        <div className='grid md:grid-cols-3 gap-8'>
+        <div className='divide-y divide-border border-t border-border'>
           {REQUIREMENTS.map((req, index) => {
             const Icon = req.icon;
             return (
               <motion.div
                 key={req.title}
-                initial={{ opacity: 0, y: 30 }}
+                initial={{ opacity: 0, y: 20 }}
                 animate={isInView ? { opacity: 1, y: 0 } : {}}
-                transition={{ duration: 0.6, delay: index * 0.12 }}
-                className='rounded-2xl bg-background border border-border p-8'>
-                <div className='flex items-center justify-center w-12 h-12 rounded-full bg-primary-blue/10 mb-6'>
-                  <Icon className='w-6 h-6 text-primary-blue' />
+                transition={{ duration: 0.6, delay: index * 0.1 }}
+                className='grid md:grid-cols-[auto_1fr] gap-4 md:gap-10 py-8 items-start'>
+                <Icon className='w-6 h-6 text-primary-blue shrink-0' />
+                <div>
+                  <h3 className='text-lg font-semibold text-navy mb-2'>
+                    {req.title}
+                  </h3>
+                  <p className='text-sm text-muted-foreground leading-relaxed max-w-xl'>
+                    {req.description}
+                  </p>
                 </div>
-                <h3 className='text-lg font-semibold text-navy mb-3'>
-                  {req.title}
-                </h3>
-                <p className='text-sm text-muted-foreground leading-relaxed'>
-                  {req.description}
-                </p>
               </motion.div>
             );
           })}
