@@ -14,7 +14,7 @@ import { WhatsAppChatbot } from '@/components/whatsapp-chatbot';
 export default function Home() {
   return (
     <LenisProvider>
-      <main className='custom-cursor bg-background'>
+      <main className='bg-background'>
         <CustomCursor />
         <ScrollProgress />
         <Header />

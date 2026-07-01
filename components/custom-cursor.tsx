@@ -3,6 +3,8 @@
 import { useEffect, useState } from 'react';
 import { motion, useMotionValue, useSpring } from 'framer-motion';
 
+const CLICKABLE_SELECTOR = 'a, button, [data-clickable]';
+
 export function CustomCursor() {
   const cursorX = useMotionValue(-100);
   const cursorY = useMotionValue(-100);
@@ -12,45 +14,65 @@ export function CustomCursor() {
   const cursorYSpring = useSpring(cursorY, springConfig);
 
   const [isHovering, setIsHovering] = useState(false);
+  const [enabled, setEnabled] = useState(false);
 
   useEffect(() => {
+    const mediaQuery = window.matchMedia('(pointer: fine)');
+    setEnabled(mediaQuery.matches);
+
+    const handleChange = (e: MediaQueryListEvent) => setEnabled(e.matches);
+    mediaQuery.addEventListener('change', handleChange);
+    return () => mediaQuery.removeEventListener('change', handleChange);
+  }, []);
+
+  useEffect(() => {
+    if (!enabled) return;
+
     document.body.style.cursor = 'none';
 
     return () => {
       document.body.style.cursor = '';
     };
-  }, []);
+  }, [enabled]);
 
   useEffect(() => {
+    if (!enabled) return;
+
     const moveCursor = (e: MouseEvent) => {
       cursorX.set(e.clientX - 4);
       cursorY.set(e.clientY - 4);
     };
 
-    const handleHover = (e: Event) => {
-      setIsHovering(e.type === 'mouseenter');
+    // Delegated hover tracking so elements added after mount (modals,
+    // expanded overlays, chat widget) still trigger the hover state.
+    const handleOver = (e: MouseEvent) => {
+      if ((e.target as HTMLElement)?.closest(CLICKABLE_SELECTOR)) {
+        setIsHovering(true);
+      }
+    };
+    const handleOut = (e: MouseEvent) => {
+      const related = e.relatedTarget as HTMLElement | null;
+      if (!related?.closest(CLICKABLE_SELECTOR)) {
+        setIsHovering(false);
+      }
     };
 
     window.addEventListener('mousemove', moveCursor);
-
-    const clickables = document.querySelectorAll('a, button, [data-clickable]');
-    clickables.forEach((el) => {
-      el.addEventListener('mouseenter', handleHover);
-      el.addEventListener('mouseleave', handleHover);
-    });
+    window.addEventListener('mouseover', handleOver);
+    window.addEventListener('mouseout', handleOut);
 
     return () => {
       window.removeEventListener('mousemove', moveCursor);
-      clickables.forEach((el) => {
-        el.removeEventListener('mouseenter', handleHover);
-        el.removeEventListener('mouseleave', handleHover);
-      });
+      window.removeEventListener('mouseover', handleOver);
+      window.removeEventListener('mouseout', handleOut);
     };
-  }, [cursorX, cursorY]);
+  }, [cursorX, cursorY, enabled]);
+
+  if (!enabled) return null;
 
   return (
     <motion.div
-      className='pointer-events-none fixed z-[9999] hidden md:block'
+      className='pointer-events-none fixed z-9999 hidden md:block'
       style={{
         left: cursorXSpring,
         top: cursorYSpring,
