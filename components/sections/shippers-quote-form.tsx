@@ -136,14 +136,14 @@ export function ShippersQuoteForm() {
             {status === 'success' && (
               <p className='flex items-center gap-2 text-sm text-emerald-700'>
                 <CheckCircle2 className='w-4 h-4' />
-                Request received &mdash; our operations desk will be in touch
+                Request received. Our operations desk will be in touch
                 shortly.
               </p>
             )}
             {status === 'error' && (
               <p className='flex items-center gap-2 text-sm text-destructive'>
                 <AlertCircle className='w-4 h-4' />
-                Something went wrong. Please email ops@truvenix.co.uk directly.
+                Something went wrong. Please email truvenix@gmail.com directly.
               </p>
             )}
           </motion.form>

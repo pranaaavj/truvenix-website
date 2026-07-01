@@ -47,7 +47,7 @@ export function LenisProvider({ children }: { children: ReactNode }) {
 
   // Route changes remount the page content but not this provider (it lives
   // in the root layout), so Lenis's virtual scroll position must be reset
-  // in sync with the new page — otherwise the new page can render mid-scroll.
+  // in sync with the new page. Otherwise the new page can render mid-scroll.
   useEffect(() => {
     if (isFirstRender.current) {
       isFirstRender.current = false;

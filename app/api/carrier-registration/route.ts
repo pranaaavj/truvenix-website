@@ -1,6 +1,6 @@
 import { NextResponse } from 'next/server';
 
-const NOTIFY_TO = process.env.LEADS_NOTIFY_EMAIL || 'ops@truvenix.co.uk';
+const NOTIFY_TO = process.env.LEADS_NOTIFY_EMAIL || 'truvenix@gmail.com';
 
 export async function POST(request: Request) {
   try {
@@ -24,7 +24,7 @@ export async function POST(request: Request) {
 
     if (!apiKey) {
       console.error(
-        '[carrier-registration] RESEND_API_KEY not configured — submission was NOT emailed:',
+        '[carrier-registration] RESEND_API_KEY not configured, submission was NOT emailed:',
         payload
       );
       return NextResponse.json({ ok: true, delivered: false });
@@ -39,7 +39,7 @@ export async function POST(request: Request) {
       body: JSON.stringify({
         from: process.env.LEADS_FROM_EMAIL || 'Truvenix Carrier Network <onboarding@resend.dev>',
         to: NOTIFY_TO,
-        subject: `Haulier registration — ${haulierName}`,
+        subject: `Haulier registration: ${haulierName}`,
         text: [
           `Haulier / company: ${haulierName}`,
           `Dispatch phone: ${dispatchPhone}`,

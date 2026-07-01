@@ -32,8 +32,8 @@ export function HomeHero() {
 
           <p className='text-lg text-white/70 mb-10 leading-relaxed max-w-xl'>
             Optimising UK road freight and port drayage solutions through a
-            disclosed-agent model &mdash; real carrier rates, one clear
-            brokerage fee, no hidden markups.
+            disclosed-agent model: real carrier rates, one clear brokerage
+            fee, no hidden markups.
           </p>
 
           <div className='flex flex-col sm:flex-row gap-4'>

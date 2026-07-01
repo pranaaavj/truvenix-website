@@ -135,14 +135,14 @@ export function CarriersRegisterForm() {
             {status === 'success' && (
               <p className='flex items-center gap-2 text-sm text-emerald-700'>
                 <CheckCircle2 className='w-4 h-4' />
-                Registration received &mdash; our dispatch team will follow up
+                Registration received. Our dispatch team will follow up
                 shortly.
               </p>
             )}
             {status === 'error' && (
               <p className='flex items-center gap-2 text-sm text-destructive'>
                 <AlertCircle className='w-4 h-4' />
-                Something went wrong. Please email ops@truvenix.co.uk directly.
+                Something went wrong. Please email truvenix@gmail.com directly.
               </p>
             )}
           </motion.form>

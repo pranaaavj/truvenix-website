@@ -31,22 +31,22 @@ export function FooterSection() {
             </p>
             <div className='space-y-3 text-sm'>
               <a
-                href='mailto:ops@truvenix.co.uk'
+                href='mailto:truvenix@gmail.com'
                 data-clickable
                 className='flex items-center gap-3 text-white/70 hover:text-white transition-colors'>
                 <Mail className='w-4 h-4 shrink-0' />
-                ops@truvenix.co.uk
+                truvenix@gmail.com
               </a>
               <a
-                href='tel:+441234567890'
+                href='tel:+447424609945'
                 data-clickable
                 className='flex items-center gap-3 text-white/70 hover:text-white transition-colors'>
                 <Phone className='w-4 h-4 shrink-0' />
-                +44 (0) 123 456 7890
+                07424 609945
               </a>
               <div className='flex items-center gap-3 text-white/70'>
                 <MapPin className='w-4 h-4 shrink-0' />
-                United Kingdom
+                82 Nairne Street, BB11 4PE
               </div>
             </div>
           </div>
@@ -103,18 +103,18 @@ export function FooterSection() {
           <div className='flex flex-col md:flex-row justify-between items-start md:items-center gap-4 text-xs text-white/50 pt-4 border-t border-white/10'>
             <p>&copy; {new Date().getFullYear()} Truvenix Limited. All rights reserved.</p>
             <div className='flex items-center gap-6'>
-              <a
-                href='#'
+              <Link
+                href='/privacy-policy'
                 data-clickable
                 className='hover:text-white transition-colors'>
                 Privacy Policy
-              </a>
-              <a
-                href='#'
+              </Link>
+              <Link
+                href='/terms-of-trading'
                 data-clickable
                 className='hover:text-white transition-colors'>
                 Terms of Trading
-              </a>
+              </Link>
             </div>
           </div>
         </div>
